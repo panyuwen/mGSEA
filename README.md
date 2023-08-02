@@ -56,13 +56,13 @@ python mGSEA.py \
 
 Gene Set Enrichment Analysis (GSEA) is a statistical method developed based on the Kolmogorove-Smirnov test to identify the enrichment of biologically functional categories in a ranked gene list. But the gene list was not strictly ranked in our study due to the resolution of the empirical *P*-values. We modified the traditional GSEA by sorting genes according to their quantiles (1.0 - *P*-values) into 200 bins of size 0.005.
 
-For a given gene set *S* (a pathway or a priori functional gene set) and a quantile bin *B*, we defined the “hit” score $P_{hit}(S, B)$ and “miss” score $P_{miss}(S,B)$ as:
+For a given gene set $S$ (a pathway or a priori functional gene set) and a quantile bin $B$, we respectively defined the “hit” score $P_{hit}(S, B)$ and “miss” score $P_{miss}(S,B)$ as:
 
 $$
-P_{hit}(S, B)=\frac{n_s}{N};P_{miss}(S, B)=\frac{N-n_s}{N},
+P_{hit}(S, B)=\frac{n_{BS}}{N_S};P_{miss}(S, B)=\frac{n_B-n_{BS}}{N_{tot}-N_S},
 $$
 
-in which the $n_s$ stands for the number of genes in $B$ belonging to $S$, and $N$ was the number of genes in $B$. Thus, we defined the net score $P_{net}(S,B)$ for a given bin as:
+in which the $N_{tot}$ stands for the total number of genes (across all the quantile bins), $N_S$ stands for the number of genes in $S$, $n_B$ stands for the number of genes in $B$, and $n_{BS}$ stands for the number of genes in in $B$ belonging to $S$. Thus, we defined the net score $P_{net}(S,B)$ for a given bin as:
 
 $$
 P_{net}(S,B)=P_{hit}(S,B)-P_{miss}(S,B).
